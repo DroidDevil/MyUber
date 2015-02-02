@@ -80,7 +80,7 @@ dependencies {
     }
 
     // UI Utils
-    compile 'com.squareup.picasso:picasso:2.3.4'
+    compile 'com.squareup.picasso:picasso:2.4.0'
     compile 'com.jakewharton:butterknife:5.1.2'
 
     // UI
