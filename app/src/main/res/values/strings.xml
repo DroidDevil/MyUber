@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyUber</string>
+    <string name="widget_heading_ride">Ride:</string>
+    <string name="widget_heading_eta">ETA:</string>
+    <string name="widget_heading_cost">Cost:</string>
+    <string name="activity_configure_save">Save</string>
+    <string name="activity_configure_cancel">Cancel</string>
+    <string name="activity_configure_section_destination">Destination</string>
+    <string name="activity_configure_address_title">Address</string>
+    <string name="activity_configure_address_hint">1455 Market Street, 94103</string>
+    <string name="activity_configure_title_title">Title</string>
+    <string name="activity_configure_title_hint">Home, Work, Gym, etc</string>
+    <string name="activity_configure_section_ride">Ride Options</string>
+    <string name="activity_configure_section_ride_location_pending">Waiting for location...</string>
+    <string name="activity_configure_section_ride_location_not_found">Could not determine location</string>
+    <string name="activity_configure_invalid_form">You must fill out the title, address, and select an Uber ride</string>
+</resources>

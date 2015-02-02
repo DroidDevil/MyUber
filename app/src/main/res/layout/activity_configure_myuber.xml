@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:padding="12dp">
+
+            <!-- Location -->
+
+            <TextView
+                style="@style/Widget.MyUber.Form.HeaderFrame.Text"
+                android:layout_columnSpan="2"
+                android:layout_gravity="start|end"
+                android:text="@string/activity_configure_section_destination"/>
+
+            <TextView
+                style="@style/Widget.MyUber.Form.RowTitle"
+                android:layout_gravity="start|end|center_vertical"
+                android:text="@string/activity_configure_title_title"/>
+
+            <EditText
+                android:id="@+id/title"
+                android:layout_gravity="start|end|center_vertical"
+                android:hint="@string/activity_configure_title_hint"
+                android:inputType="textCapWords"
+                android:minLines="2"/>
+
+            <TextView
+                style="@style/Widget.MyUber.Form.RowTitle"
+                android:layout_gravity="start|end|center_vertical"
+                android:text="@string/activity_configure_address_title"/>
+
+            <LinearLayout
+                android:layout_gravity="start|end|center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/activity_configure_address_hint"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/address_status"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <!-- Ride -->
+
+            <LinearLayout
+                style="@style/Widget.MyUber.Form.HeaderFrame"
+                android:layout_columnSpan="2"
+                android:layout_gravity="start|end"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Widget.MyUber.Form.HeaderText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_configure_section_ride"/>
+
+                <TextView
+                    android:id="@+id/user_location_address"
+                    style="@style/Widget.MyUber.Form.HeaderText.Sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/activity_configure_section_ride_location_pending"/>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_columnSpan="2"
+                android:layout_gravity="start|end">
+
+                <com.droiddevil.myuber.widget.ExpandedGridView
+                    android:id="@+id/uber_ride_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="1"/>
+
+                <ProgressBar
+                    android:id="@+id/list_loading_indicator"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+        </GridLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/buttons_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#DEDEDE"
+            android:text="@string/activity_configure_cancel"
+            android:textColor="#555"/>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#1FBAD6"
+            android:text="@string/activity_configure_save"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+</LinearLayout>
