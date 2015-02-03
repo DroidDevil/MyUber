@@ -34,11 +34,18 @@ import com.droiddevil.myuber.uber.UberTime;
 import com.droiddevil.myuber.uber.UberTimeResponse;
 import com.droiddevil.myuber.utils.LocationUtils;
 import com.droiddevil.myuber.utils.UberUtils;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import javax.inject.Inject;
 
+import io.nlopez.smartlocation.OnLocationUpdatedListener;
+import io.nlopez.smartlocation.SmartLocation;
+import io.nlopez.smartlocation.location.config.LocationParams;
+import io.nlopez.smartlocation.location.providers.LocationManagerProvider;
 import timber.log.Timber;
 
 public class WidgetUpdateService extends IntentService {
@@ -59,6 +66,9 @@ public class WidgetUpdateService extends IntentService {
 
     @Inject
     UberService mUberService;
+
+    @Inject
+    Tracker mAnalyticsTracker;
 
     private Location mUserLocation;
 
@@ -99,6 +109,15 @@ public class WidgetUpdateService extends IntentService {
     }
 
     private void updateWidget(WidgetRecord record) {
+        // Track event
+        mAnalyticsTracker.send(
+            new HitBuilders.EventBuilder()
+                .setCategory("Widget")
+                .setAction("Update")
+                .setLabel(record.getUberProductDisplayName())
+                .setValue(1)
+                .build());
+
         UberPriceResponse uberPriceResponse = null;
         try {
             uberPriceResponse = mUberService.getPriceEstimates(

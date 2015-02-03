@@ -48,6 +48,8 @@ import com.droiddevil.myuber.rx.EndlessObserver;
 import com.droiddevil.myuber.uber.UberProduct;
 import com.droiddevil.myuber.uber.UberProductResponse;
 import com.droiddevil.myuber.utils.LocationUtils;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -75,6 +77,9 @@ public class ConfigureMyUberActivity extends BaseActivity {
 
     @Inject
     UberService mUberService;
+
+    @Inject
+    Tracker mAnalyticsTracker;
 
     @InjectView(R.id.title)
     EditText mTitle;
@@ -251,6 +256,15 @@ public class ConfigureMyUberActivity extends BaseActivity {
             Toast.makeText(mContext, R.string.activity_configure_invalid_form, Toast.LENGTH_LONG).show();
             return;
         }
+
+        // Track event
+        mAnalyticsTracker.send(
+            new HitBuilders.EventBuilder()
+                .setCategory("Widget")
+                .setAction("Add")
+                .setLabel(mSelectedUberProduct.getDisplayName())
+                .setValue(1)
+                .build());
 
         // Save data record
         WidgetRecord record = new WidgetRecord();

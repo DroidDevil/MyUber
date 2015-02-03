@@ -20,6 +20,8 @@ import android.content.Context;
 
 import com.droiddevil.myuber.annotations.ForApplication;
 import com.droiddevil.myuber.data.DataModule;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 
 import javax.inject.Singleton;
 
@@ -32,7 +34,8 @@ import dagger.Provides;
         DataModule.class
     },
     injects = {
-        WidgetUpdateService.class
+        WidgetUpdateService.class,
+        MyUberWidgetProvider.class
     }
 )
 public class BaseModule {
@@ -48,6 +51,13 @@ public class BaseModule {
     @ForApplication
     Context provideApplicationContext() {
         return mApplication;
+    }
+
+    @Provides
+    @Singleton
+    Tracker provideAnalyticsTracker() {
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(mApplication);
+        return analytics.newTracker(R.xml.ga_tracker);
     }
 
 }
