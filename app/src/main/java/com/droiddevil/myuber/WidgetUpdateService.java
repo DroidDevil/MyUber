@@ -46,6 +46,7 @@ import io.nlopez.smartlocation.OnLocationUpdatedListener;
 import io.nlopez.smartlocation.SmartLocation;
 import io.nlopez.smartlocation.location.config.LocationParams;
 import io.nlopez.smartlocation.location.providers.LocationManagerProvider;
+import rx.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
 public class WidgetUpdateService extends IntentService {
@@ -89,7 +90,7 @@ public class WidgetUpdateService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         // Get user location
         try {
-            mUserLocation = LocationUtils.getUserLocation(mContext).toBlocking().first();
+            mUserLocation = LocationUtils.getUserLocation(mContext).subscribeOn(AndroidSchedulers.mainThread()).toBlocking().first();
         } catch (Exception e) {
             Timber.e(e, "Could not retrieve GPS coordinates");
             return;
